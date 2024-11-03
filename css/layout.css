@@ -1,0 +1,43 @@
+/* Contenedor principal */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--spacing-xl) var(--spacing-lg);
+}
+
+/* Layout principal de la aplicación */
+.app-container {
+    display: flex;
+    min-height: 100vh;
+    position: relative;
+}
+
+/* Layout de la lista de empleos */
+.jobs-list-container {
+    width: var(--list-width);
+    background: var(--card-background);
+    border-right: 1px solid var(--border-color);
+    overflow-y: auto;
+    height: 100vh;
+    flex-shrink: 0;
+}
+
+/* Layout del detalle */
+.job-detail-container {
+    flex: 1;
+    overflow-y: auto;
+    height: 100vh;
+    background: var(--background);
+}
+
+/* Media queries para layouts responsivos */
+@media (max-width: 1024px) {
+    .jobs-list-container {
+        width: 100%;
+        border-right: none;
+    }
+
+    .job-detail-container {
+        display: none;
+    }
+}
