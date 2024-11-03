@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portal de empleos del sector agroindustrial">
+    <title>Computrabajo Agroindustrial</title>
+    
+    <!-- Fuentes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Estilos CSS -->
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/utilities.css">
+    
+    <!-- Componentes CSS -->
+    <link rel="stylesheet" href="css/components/header.css">
+    <link rel="stylesheet" href="css/components/filters.css">
+    <link rel="stylesheet" href="css/components/job-detail.css">
+    <link rel="stylesheet" href="css/components/modal.css">
+</head>
+<body>
+    <!-- Hero Section y Buscador -->
+    <header class="hero-section">
+        <div class="container">
+            <div class="hero-content animate-fade-in">
+                <h1>Encuentra tu próximo trabajo en el sector agroindustrial</h1>
+                <p>Miles de oportunidades en las principales empresas agroexportadoras del Perú</p>
+
+                <!-- Buscador Principal -->
+                <div class="search-box">
+                    <form class="search-form" id="searchForm" action="/empleos/buscar" method="GET">
+                        <div class="search-group">
+                            <i class="fas fa-search search-icon"></i>
+                            <input 
+                                type="text" 
+                                name="query" 
+                                id="searchInput"
+                                class="search-input" 
+                                placeholder="Buscar empleos..."
+                                autocomplete="off"
+                                aria-label="Buscar empleos">
+                        </div>
+
+                        <div class="search-group">
+                            <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                            <select 
+                                name="location" 
+                                id="locationSelect"
+                                class="search-select"
+                                aria-label="Seleccionar ubicación">
+                                <option value="">Todas las ubicaciones</option>
+                                <option value="ICA">Ica</option>
+                                <option value="CHINCHA">Chincha</option>
+                                <option value="PISCO">Pisco</option>
+                                <option value="LIMA">Lima</option>
+                                <option value="TRUJILLO">Trujillo</option>
+                            </select>
+                        </div>
+
+                        <button type="submit" class="button button-primary">
+                            <i class="fas fa-search" aria-hidden="true"></i>
+                            <span>Buscar Empleos</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Filtros -->
+    <nav class="filters-row" role="navigation" aria-label="Filtros de búsqueda">
+        <!-- Filtro Ordenar -->
+        <div class="filter-pill">
+            <button class="filter-button" aria-expanded="false">
+                Ordenar
+                <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="filter-dropdown" role="listbox">
+                <div class="dropdown-item" role="option">Más recientes</div>
+                <div class="dropdown-item" role="option">Más relevantes</div>
+                <div class="dropdown-item" role="option">Mayor salario</div>
+            </div>
+        </div>
+
+        <!-- Filtro Distancia -->
+        <div class="filter-pill">
+            <button class="filter-button" aria-expanded="false">
+                Distancia
+                <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="filter-dropdown" role="listbox">
+                <div class="dropdown-item" role="option">Menos de 5 km</div>
+                <div class="dropdown-item" role="option">5 - 10 km</div>
+                <div class="dropdown-item" role="option">10 - 20 km</div>
+                <div class="dropdown-item" role="option">Más de 20 km</div>
+            </div>
+        </div>
+        <div class="filter-pill">
+            <button class="filter-button">
+                Fecha
+                <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="filter-dropdown">
+                <div class="dropdown-item">Hoy</div>
+                <div class="dropdown-item">Últimos 3 días</div>
+                <div class="dropdown-item">Última semana</div>
+                <div class="dropdown-item">Último mes</div>
+            </div>
+        </div>
+    
+        <div class="filter-pill">
+            <button class="filter-button">
+                Categoría
+                <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="filter-dropdown">
+                <div class="dropdown-item">Ventas</div>
+                <div class="dropdown-item">Tecnología</div>
+                <div class="dropdown-item">Administración</div>
+                <div class="dropdown-item">Marketing</div>
+            </div>
+        </div>
+    
+        <div class="filter-pill">
+            <button class="filter-button">
+                Lugar de trabajo
+                <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="filter-dropdown">
+                <div class="dropdown-item">Presencial</div>
+                <div class="dropdown-item">Remoto</div>
+                <div class="dropdown-item">Híbrido</div>
+            </div>
+        </div>
+    
+        <div class="filter-pill">
+            <button class="filter-button">
+                Experiencia
+                <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="filter-dropdown">
+                <div class="dropdown-item">Sin experiencia</div>
+                <div class="dropdown-item">1-3 años</div>
+                <div class="dropdown-item">3-5 años</div>
+                <div class="dropdown-item">5+ años</div>
+            </div>
+        </div>
+    
+        <div class="filter-pill">
+            <button class="filter-button">
+                Salario
+                <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="filter-dropdown">
+                <div class="dropdown-item">Hasta S/1,500</div>
+                <div class="dropdown-item">S/1,500 - S/3,000</div>
+                <div class="dropdown-item">S/3,000 - S/5,000</div>
+                <div class="dropdown-item">Más de S/5,000</div>
+            </div>
+        </div>
+    
+        <div class="filter-pill">
+            <button class="filter-button">
+                Jornada
+                <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="filter-dropdown">
+                <div class="dropdown-item">Tiempo completo</div>
+                <div class="dropdown-item">Medio tiempo</div>
+                <div class="dropdown-item">Por horas</div>
+            </div>
+        </div>
+    
+        <div class="filter-pill">
+            <button class="filter-button">
+                Contrato
+                <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="filter-dropdown">
+                <div class="dropdown-item">Indefinido</div>
+                <div class="dropdown-item">Temporal</div>
+                <div class="dropdown-item">Prácticas</div>
+            </div>
+        </div>
+    
+        <div class="filter-pill">
+            <button class="filter-button">
+                Discapacidad
+                <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="filter-dropdown">
+                <div class="dropdown-item">Sí</div>
+                <div class="dropdown-item">No</div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contenido Principal -->
+    <main class="app-container">
+        <!-- Lista de empleos (panel izquierdo) -->
+        <aside class="jobs-list-container">
+            <header class="jobs-list-header">
+                <h2>Empleos Disponibles</h2>
+                <div id="activeFilters" class="active-filters"></div>
+            </header>
+            <div class="jobs-list" id="jobsList">
+                <!-- Las cards de trabajo se insertarán aquí dinámicamente -->
+            </div>
+        </aside>
+
+        <!-- Detalle del empleo (panel derecho) -->
+        <section class="job-detail-container" id="jobDetailContainer" aria-live="polite">
+            <!-- El detalle del trabajo se insertará aquí dinámicamente -->
+        </section>
+
+        <!-- Modal para móviles -->
+        <div class="modal" id="jobModal" role="dialog" aria-modal="true">
+            <div class="modal-content">
+                <button class="modal-close" id="modalClose" aria-label="Cerrar">
+                    <i class="fas fa-times"></i>
+                </button>
+                <div id="modalContent">
+                    <!-- El contenido del modal se insertará aquí dinámicamente -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Templates -->
+    <template id="jobCardTemplate">
+        <article class="job-card">
+            <!-- Header de la empresa -->
+            <div class="job-header">
+                <div class="company-logo" title="Agrícola Chapi">
+                    <img src="https://scontent.flim2-1.fna.fbcdn.net/v/t39.30808-6/326764918_1955909824752287_8459968866846313747_n.png?_nc_cat=109&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=e-RvlMuUp0IQ7kNvgEMz0nE&_nc_zt=23&_nc_ht=scontent.flim2-1.fna&_nc_gid=AdSRkH3zszhmyVat6CmcIDp&oh=00_AYD7YYI8oqz2b_mfEqO4YK0CzPkuubbR76x-B8fMYfEdzA&oe=672C4D4F" 
+                         alt="Agrícola Chapi"
+                         onerror="handleImageError(this, 'Agrícola Chapi')">
+                </div>
+                <div class="company-info">
+                    <span class="company-name">
+                        Agrícola Chapi
+                        <i class="fas fa-check-circle verified-icon" title="Empresa Verificada"></i>
+                    </span>
+                    <div class="company-info-1">
+                        <span class="company-evaluation" title="Evaluación de la empresa">
+                            <i class="fas fa-star"></i>
+                            4,3
+                        </span>
+                        <span class="location-badge">
+                            <i class="fas fa-location-dot"></i>
+                            Subtanjalla, Ica
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Badges -->
+            <div class="badges-container">
+                <div class="featured-badge">
+                    <i class="fas fa-star"></i>
+                    Destacado
+                </div>
+                <div class="urgency-tag">
+                    <i class="fas fa-fire"></i>
+                    <span>Se requiere con urgencia</span>
+                </div>
+            </div>
+
+            <!-- Título -->
+            <div class="title">
+                <h1 class="job-title">Asesor de ventas con o sin experiencia / Turno Mañana Remoto / Home Office</h1>
+            </div>
+
+            <!-- Detalles -->
+            <div class="job-details">
+                <div class="detail-item" title="Salario mensual">
+                    <i class="fas fa-money-bill-wave"></i>
+                    <div>
+                        <span class="salary-detail"></span>
+                        <span class="salary-type">S/ 1.025,00 · Mensual</span>
+                    </div>
+                </div>
+                <div class="jobs-details-row">
+                    <div class="detail-item" title="Tipo de contrato">
+                        <i class="fas fa-briefcase"></i>
+                        <div>Jornal y destajo</div>
+                    </div>
+                    <div class="detail-item" title="Horario">
+                        <i class="fas fa-clock"></i>
+                        <div>Tiempo Completo</div>
+                    </div>
+                    <div class="detail-item" title="Duración">
+                        <i class="fas fa-hourglass-half"></i>
+                        <div>3 meses</div>
+                    </div>
+                    <div class="detail-item" title="Vacantes">
+                        <i class="fas fa-users"></i>
+                        <div>20 vacantes</div>
+                    </div>
+                </div>
+                <div class="time-posted">
+                    Publicado hace 17 horas
+                </div>
+            </div>
+        </article>
+    </template>
+
+    <template id="jobDetailTemplate">
+        <!-- [Template del detalle del trabajo] -->
+        <div class="full-job-details">
+            <div class="job-detail-header">
+                <div class="job-header">
+                    <div class="company-logo">
+                        <img src="" alt="" onerror="handleImageError(this, this.alt)">
+                    </div>
+                    <div class="company-info">
+                        <h1 class="company-name">
+                            <span class="company-name-text"></span>
+                            <i class="fas fa-check-circle verified-icon" title="Empresa Verificada"></i>
+                        </h1>
+                        <div class="company-meta">
+                            <span class="company-evaluation">
+                                <i class="fas fa-star"></i>
+                                <span class="rating"></span>
+                            </span>
+                            <span class="company-stat">
+                                <i class="fas fa-users"></i>
+                                <span class="employees"></span>
+                            </span>
+                            <span class="location-badge">
+                                <i class="fas fa-location-dot"></i>
+                                <span class="location"></span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="badges-container">
+                    <span class="badge badge-primary">
+                        <i class="fas fa-star"></i>
+                        Destacado
+                    </span>
+                    <span class="badge badge-urgent">
+                        <i class="fas fa-fire"></i>
+                        Se requiere con urgencia
+                    </span>
+                </div>
+
+                <h2 class="job-title"></h2>
+
+                <div class="job-meta">
+                    <div class="detail-item">
+                        <i class="fas fa-money-bill-wave"></i>
+                        <div class="salary"></div>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-briefcase"></i>
+                        <div class="contract-type"></div>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-clock"></i>
+                        <div class="schedule"></div>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-calendar"></i>
+                        <div class="duration"></div>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="btn btn-primary">
+                        <i class="fas fa-paper-plane"></i>
+                        Postular ahora
+                    </button>
+                    <button class="btn btn-outline">
+                        <i class="far fa-bookmark"></i>
+                        Guardar empleo
+                    </button>
+                </div>
+            </div>
+
+            <div class="job-detail-content">
+                <!-- Descripción -->
+                <section class="content-section">
+                    <h3 class="section-title">
+                        <i class="fas fa-align-left"></i>
+                        Descripción del puesto
+                    </h3>
+                    <div class="job-description"></div>
+                </section>
+
+                <!-- Requisitos -->
+                <section class="content-section">
+                    <h3 class="section-title">
+                        <i class="fas fa-list-check"></i>
+                        Requisitos
+                    </h3>
+                    <ul class="requirements-list"></ul>
+                </section>
+
+                <!-- Beneficios -->
+                <section class="content-section">
+                    <h3 class="section-title">
+                        <i class="fas fa-gift"></i>
+                        Beneficios
+                    </h3>
+                    <ul class="benefits-list"></ul>
+                </section>
+            </div>
+        </div>
+    </template>
+
+    <!-- Aplicación principal -->
+    <script type="module" src="index.js"></script>
+</body>
+</html>

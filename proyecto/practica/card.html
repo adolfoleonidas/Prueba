@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/components/job-card.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+   
+</head>
+<body>
+    <div class="container">
+        <article class="card">
+            <!-- Header de la empresa -->
+            <div class="job-header">
+                <div class="company-logo" title="Agrícola Chapi">
+                    <img src="https://scontent.flim2-1.fna.fbcdn.net/v/t39.30808-6/326764918_1955909824752287_8459968866846313747_n.png?_nc_cat=109&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=e-RvlMuUp0IQ7kNvgEMz0nE&_nc_zt=23&_nc_ht=scontent.flim2-1.fna&_nc_gid=AdSRkH3zszhmyVat6CmcIDp&oh=00_AYD7YYI8oqz2b_mfEqO4YK0CzPkuubbR76x-B8fMYfEdzA&oe=672C4D4F" 
+                         alt="Agrícola Chapi"
+                         onerror="handleImageError(this, 'Agrícola Chapi')">
+                </div>
+                <div class="company-info">
+                    <span class="company-name">
+                        Agrícola Chapi
+                        <i class="fas fa-check-circle verified-icon" title="Empresa Verificada"></i>
+                    </span>
+                    <div class="company-info-1">
+                        <span class="company-evaluation" title="Evaluación de la empresa">
+                            <i class="fas fa-star"></i>
+                            4,3
+                        </span>
+                        <span class="location-badge">
+                            <i class="fas fa-location-dot"></i>
+                            Subtanjalla, Ica
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Badges -->
+            <div class="badges-container">
+                <div class="featured-badge">
+                    <i class="fas fa-star"></i>
+                    Destacado
+                </div>
+                <div class="urgency-tag">
+                    <i class="fas fa-fire"></i>
+                    <span>Se requiere con urgencia</span>
+                </div>
+            </div>
+
+            <!-- Título -->
+            <div class="title">
+                <h1 class="job-title">Asesor de ventas con o sin experiencia / Turno Mañana Remoto / Home Office</h1>
+            </div>
+
+            <!-- Detalles -->
+            <div class="job-details">
+                <div class="detail-item" title="Salario mensual">
+                    <i class="fas fa-money-bill-wave"></i>
+                    <div>
+                        <span class="salary-detail"></span>
+                        <span class="salary-type">S/ 1.025,00 · Mensual</span>
+                    </div>
+                </div>
+                <div class="jobs-details-row">
+                    <div class="detail-item" title="Tipo de contrato">
+                        <i class="fas fa-briefcase"></i>
+                        <div>Jornal y destajo</div>
+                    </div>
+                    <div class="detail-item" title="Horario">
+                        <i class="fas fa-clock"></i>
+                        <div>Tiempo Completo</div>
+                    </div>
+                    <div class="detail-item" title="Duración">
+                        <i class="fas fa-hourglass-half"></i>
+                        <div>3 meses</div>
+                    </div>
+                    <div class="detail-item" title="Vacantes">
+                        <i class="fas fa-users"></i>
+                        <div>20 vacantes</div>
+                    </div>
+                </div>
+                <div class="time-posted">
+                    Publicado hace 17 horas
+                </div>
+            </div>
+        </article>
+    </div>
+
+    <script>
+    function handleImageError(img, companyName) {
+        img.style.display = 'none';
+        const initials = companyName
+            .split(' ')
+            .map(word => word[0])
+            .join('')
+            .slice(0, 2)
+            .toUpperCase();
+        img.parentNode.textContent = initials;
+    }
+
+    // Mejora de accesibilidad
+    document.querySelectorAll('[title]').forEach(element => {
+        element.setAttribute('role', 'tooltip');
+        element.setAttribute('aria-label', element.getAttribute('title'));
+    });
+    </script>
+</body>
+</html>
